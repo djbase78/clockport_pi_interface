@@ -6,7 +6,7 @@ The fork contains PCB files in KiCAD 6.99 format, and an updated pin constraint 
 |-------------|-------------|
 | ![PCB](Docs/BarePCB.jpg?raw=true) | ![PCB /w components](Docs/WithCmpnt.jpg?raw=true) |
 | ![Mounted with RPi Zero 2W](Docs/Top.jpg?raw=true)  | ![Bottom side](Docs/Bottom.jpg?raw=true) |
-| ![Running terminal in AmigaOS](amirc.jpg?raw=true) | ![Low profile installation](InAnA1200.jpg) |
+| ![Running terminal in AmigaOS](Docs/amirc.jpg?raw=true) | ![Low profile installation](Docs/InAnA1200.jpg?raw=true) |
 
 ## Details about how the interface works
 
