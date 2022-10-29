@@ -3,6 +3,7 @@
 This is a fork from Niklas Ekström where an alternate PCB layout has been made to enable an even smaller and more low-profile end product.
 The fork contains PCB files in KiCAD 6.99 format, and an updated pin constraint file (.ucf) to accomodate for the new PCB.
 
+|  |  |
 |-------------|-------------|
 | ![PCB](Docs/BarePCB.jpg?raw=true) | ![PCB /w components](Docs/WithCmpnt.jpg?raw=true) |
 | ![Mounted with RPi Zero 2W](Docs/Top.jpg?raw=true)  | ![Bottom side](Docs/Bottom.jpg?raw=true) |
