@@ -1,49 +1,15 @@
-# Amiga clock port to Raspberry Pi interface
+# Alternative PCB for Niklas Ekström's "clockport pi interface"
 
-This interface has a small 64 kB SRAM memory that is shared between an Amiga and a Raspberry Pi.
-The Amiga connects to the interface through the [clock port](https://en.wikipedia.org/wiki/Clock_port).
+This is a fork from Niklas Ekström where an alternate PCB layout has been made to enable an even smaller and more low-profile end product.
 
-The [A314](https://github.com/niklasekstrom/a314) software has been adapted to this interface so that it is possible to run services such as a314fs and the SANA-II network driver.
-The software is available as the [clockport_if](https://github.com/niklasekstrom/a314/tree/clockport_if) branch in the a314 repository, which is added to this repository as a git submodule.
-
-|         |            |
-| ------------- |---------------|
-| ![PCB](Docs/soldered_board.jpg?raw=true)      | ![Installed with Pi 3A](Docs/installed_pi_zero_2w.jpg?raw=true) |
-| ![PCB](Docs/amirc.jpg?raw=true)      | |
+|             |             |
+|-------------|-------------|
+| ![PCB](Docs/BarePCB.jpg?raw=true) | ![PCB /w components](Docs/WithCmpnt.jpg?raw=true) |
+| ![Installed with RPi Zero 2W](Docs/Top.jpg?raw=true)  | ![Installed with RPi Zero 2W](Docs/Bottom.jpg?raw=true) |
 
 ## Details about how the interface works
 
-Either side, the Amiga or the Pi, can read from and write to the SRAM.
-The interface is 8 bits wide, meaning that each access reads or writes one byte.
-The interface is symmetric between the sides, so in this description we describe how the Amiga is communicating with the interface, but the communicating between the Pi and the interface works in the same way.
-
-The Amiga can perform two commands towards the interface:
-
-- Read a register
-- Write a register
-
-The interface exposes four registers:
-
-- REG_SRAM = 0
-- REG_IRQ = 1
-- REG_A_LO = 2
-- REG_A_HI = 3
-
-The interface has the following state variables:
-
-- Amiga address pointer, 16 bits
-- Pi address pointer, 16 bits
-- Amiga interrupt request, 1 bit
-- Pi interrupt request, 1 bit
-
-The actions that the Amiga can do, and their effects:
-
-- Write REG_A_LO or REG_A_HI: update the Amiga address pointer.
-- Write REG_IRQ: write 0 to clear the Amiga interrupt request bit, and write 1 to set the Pi interrupt request bit.
-- Read REG_SRAM: reads and returns the byte in SRAM that the Amiga address pointer points to, and then increments the pointer.
-- Write REG_SRAM: same as above but writes a byte to SRAM and increments address pointer.
-
-So in order to read and write to the SRAM, either side must set the address pointer, and then repeatedly read (or write) REG_SRAM in order to read (or write) subsequent positions in the memory.
+For further details about this excellent project, please visit this forks origin site @ [niklasekstrom/clockport_pi_interface](https://github.com/niklasekstrom/clockport_pi_interface)
 
 ## Bill of materials
 
@@ -53,5 +19,5 @@ So in order to read and write to the SRAM, either side must set the address poin
 | U1                             | XC9572XL-VQ64                                        | TQFP-64_10x10mm_P0.5mm          | 1        |
 | IC2, IC3                       | SN74LVC573APWRE4<br>(alt: 74LVC573APW,118)           | SOP65P640X120-20N               | 2        |
 | IC1                            | IS63WV1288DBLL-10TLI<br>(alt: IS61WV1288EEBLL-10TLI) | SOIC127P1176X120-32N            | 1        |
-| J1                             | Raspberry_Pi_2_3                                     | PinSocket_2x20_P2.54mm_Vertical | 1        |
-| J2                             | Conn_02x11_Odd_Even                                  | PinSocket_2x11_P2.00mm_Vertical | 1        |
+| J1                             | Raspberry Pi Zero 2W                                 | PinSocket_2x20_P2.54mm_Vertical | 1        |
+| J2                             | Molex 87381-2218<br>2row, 11pos, 2mm grid            | PinSocket_2x11_P2.00mm_Vertical | 1        |
